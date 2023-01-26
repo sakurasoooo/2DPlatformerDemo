@@ -38,13 +38,16 @@ func _unhandled_input(event):
 			_pause_menu.close()
 		get_tree().set_input_as_handled()
 
-	elif event.is_action_pressed("splitscreen"):
-		if name == "Splitscreen":
-			# We need to clean up a little bit first to avoid Viewport errors.
-			$Black/SplitContainer/ViewportContainer1.free()
-			$Black.queue_free()
-			# warning-ignore:return_value_discarded
-			get_tree().change_scene("res://src/Main/Game.tscn")
-		else:
-			# warning-ignore:return_value_discarded
-			get_tree().change_scene("res://src/Main/Splitscreen.tscn")
+	# elif event.is_action_pressed("splitscreen"):
+	# 	if name == "Splitscreen":
+	# 		# We need to clean up a little bit first to avoid Viewport errors.
+	# 		$Black/SplitContainer/ViewportContainer1.free()
+	# 		$Black.queue_free()
+	# 		# warning-ignore:return_value_discarded
+	# 		get_tree().change_scene("res://src/Main/Game.tscn")
+	# 	else:
+	# 		# warning-ignore:return_value_discarded
+	# 		get_tree().change_scene("res://src/Main/Splitscreen.tscn")
+
+	elif event.is_action_pressed("Restart"):	
+		get_tree().change_scene("res://src/Main/Game.tscn")
