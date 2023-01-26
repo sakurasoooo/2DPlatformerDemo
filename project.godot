@@ -88,6 +88,11 @@ stretch/mode="2d"
 
 singletons=[  ]
 
+[global]
+
+window=false
+resolution=false
+
 [image_loader]
 
 repeat=false

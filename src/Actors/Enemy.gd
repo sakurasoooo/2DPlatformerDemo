@@ -65,8 +65,9 @@ func _physics_process(_delta):
 		animation_player.play(animation)
 
 	if player_detector_top.is_colliding() and _state == State.WALKING:
-		player_detector_top.get_collider().emit_signal("jump_attack")
-		destroy()
+		if player_detector_top.get_collider().get_vel().y > 0:
+			player_detector_top.get_collider().emit_signal("jump_attack")
+			destroy()
 		return
 
 	if player_detector_left.is_colliding() and _state == State.WALKING:

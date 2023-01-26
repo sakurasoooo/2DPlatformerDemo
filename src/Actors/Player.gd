@@ -205,3 +205,6 @@ func _on_Player_got_hurt():
 
 func _on_Player_jump_attack():
 	jumpAttack = true
+
+func get_vel():
+	return _velocity
