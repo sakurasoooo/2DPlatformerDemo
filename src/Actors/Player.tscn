@@ -278,3 +278,6 @@ scale = Vector2( 1.49157, 1.46265 )
 normal = ExtResource( 8 )
 action = "shoot"
 visibility_mode = 1
+
+[connection signal="got_hurt" from="." to="." method="_on_Player_got_hurt"]
+[connection signal="jump_attack" from="." to="." method="_on_Player_jump_attack"]
