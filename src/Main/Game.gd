@@ -51,3 +51,4 @@ func _unhandled_input(event):
 
 	elif event.is_action_pressed("Restart"):	
 		get_tree().change_scene("res://src/Main/Game.tscn")
+		Global.all_reset()

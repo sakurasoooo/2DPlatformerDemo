@@ -67,7 +67,7 @@ func _ready():
 #   you can easily move individual functions.
 func _physics_process(_delta):
 	# Play jump sound #Zero
-	if Input.is_action_just_pressed("jump" + action_suffix) and is_on_floor() or  doubleJump and Input.is_action_just_pressed("jump" + action_suffix):
+	if (Input.is_action_just_pressed("jump" + action_suffix) and is_on_floor() and !bufferTime) or ( (doubleJump and !bufferTime) and Input.is_action_just_pressed("jump" + action_suffix)):
 		sound_jump.play()
 
 	var direction = get_direction()
