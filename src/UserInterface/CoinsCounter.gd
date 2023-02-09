@@ -18,6 +18,8 @@ func _ready():
 		_player_path.connect("collect_coin", self, "_collect_coin")
 		_player_path.connect("player_shoot", self, "_fire_coin")
 
+func _process(_delta):
+	coins_label.set_text(str(Global.coins_collected))
 
 func _collect_coin():
 	

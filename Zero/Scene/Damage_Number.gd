@@ -8,7 +8,6 @@ func set_number(value):
 	numberLabel.text = str(int(value))
 
 func _ready():
-	print(global_position)
 	apply_central_impulse(Vector2.UP * 200)
 	yield(get_tree().create_timer(1), "timeout")
 	queue_free()

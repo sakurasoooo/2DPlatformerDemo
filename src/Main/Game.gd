@@ -50,5 +50,5 @@ func _unhandled_input(event):
 	# 		get_tree().change_scene("res://src/Main/Splitscreen.tscn")
 
 	elif event.is_action_pressed("restart"):	
-		get_tree().change_scene("res://src/Main/Game.tscn")
+		var _ret = get_tree().change_scene("res://src/Main/Game.tscn")
 		Global.all_reset()

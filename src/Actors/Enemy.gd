@@ -81,6 +81,9 @@ func destroy():
 	_state = State.DEAD
 	_velocity = Vector2.ZERO
 
+func add_award():
+	Global.coins_collected += 10 * Global.coin_rate
+
 
 func get_new_animation():
 	var animation_new = ""

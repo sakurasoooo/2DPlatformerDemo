@@ -4,13 +4,13 @@ extends Actor
 # warning-ignore:unused_signal
 signal collect_coin
 #Zero
-signal player_shoot
+signal player_shoot()
 # warning-ignore:unused_signal
-signal got_hurt
+signal got_hurt()
 # warning-ignore:unused_signal
-signal jump_attack
-
-signal death
+signal jump_attack()
+# warning-ignore:unused_signal
+signal death()
 
 const FLOOR_DETECT_DISTANCE = 20.0
 
@@ -30,7 +30,7 @@ onready var text_path = preload("res://Zero/Scene/Damage_Number.tscn")
 
 onready var sprites = $Sprite  #Zero
 
-onready var doubleJump = true  #Zero
+onready var doubleJump = false  #Zero
 
 onready var bufferTime = false  #Zero let player out of control and push back
 
@@ -100,6 +100,9 @@ func _physics_process(_delta):
 	if Global.playerHealth <= 0:
 		death()
 
+	if(Global.healSkill):
+		recovery_health(_delta * 5)
+
 	#fall
 	if(!is_on_floor()):
 		floating_time += _delta
@@ -114,6 +117,7 @@ func _physics_process(_delta):
 		and !bufferTime
 		and Global.stamina > 25
 		and sliderTimer.is_stopped()
+		and Global.sliderSkill
 	):
 		is_sliding = true
 		_velocity.y = 0
@@ -161,7 +165,7 @@ func _physics_process(_delta):
 
 		#Zero Reset DoubleJump
 	if is_on_floor():
-		doubleJump = true
+		doubleJump =  Global.doubleJumpSkill
 		_stop_sliding()
 		if global_position.y - jumpY >  32 * 4.1:
 			_fall_damage()
@@ -184,6 +188,7 @@ func _update_shoot():
 		Input.is_action_just_pressed("shoot")
 		and shoot_timer.is_stopped()
 		and Global.coins_collected > 0
+		and Global.gunSkill
 	):  #Zero
 		is_shooting = gun.shoot(sprite.scale.x)
 

@@ -17,7 +17,7 @@ func _ready():
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), base_volume_db)
 
 
-func _process(delta):
+func _process(_delta):
 	if(Global.playerHealth <= 0):
 		volume_db = -60
 	else:

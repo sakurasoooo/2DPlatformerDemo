@@ -42,8 +42,8 @@ script = ExtResource( 6 )
 [node name="TextureButton" type="TextureButton" parent="."]
 margin_right = 32.0
 margin_bottom = 32.0
-disabled = true
 toggle_mode = true
+shortcut_in_tooltip = false
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 1 )
 texture_disabled = ExtResource( 2 )
@@ -81,7 +81,7 @@ grow_vertical = 0
 position = Vector2( 8, 11.5 )
 scale = Vector2( 1.5, 1.875 )
 frames = SubResource( 5 )
-frame = 1
+frame = 3
 playing = true
 
 [node name="Label" type="Label" parent="ColorRect/BoxContainer"]

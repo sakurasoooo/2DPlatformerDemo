@@ -24,15 +24,15 @@ margin_bottom = 477.464
 alignment = 1
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="CanvasModulate/VBoxContainer"]
-margin_top = 110.0
+margin_top = 98.0
 margin_right = 504.0
-margin_bottom = 150.0
+margin_bottom = 142.0
 alignment = 1
 
 [node name="Category" type="Label" parent="CanvasModulate/VBoxContainer/VBoxContainer3"]
 modulate = Color( 0.894118, 0.376471, 0.376471, 1 )
 margin_right = 504.0
-margin_bottom = 18.0
+margin_bottom = 20.0
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 1 )
 text = "Game Design"
@@ -40,24 +40,24 @@ align = 1
 autowrap = true
 
 [node name="List" type="Label" parent="CanvasModulate/VBoxContainer/VBoxContainer3"]
-margin_top = 22.0
+margin_top = 24.0
 margin_right = 504.0
-margin_bottom = 40.0
+margin_bottom = 44.0
 custom_fonts/font = ExtResource( 1 )
 text = "Zero"
 align = 1
 autowrap = true
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="CanvasModulate/VBoxContainer"]
-margin_top = 154.0
+margin_top = 146.0
 margin_right = 504.0
-margin_bottom = 194.0
+margin_bottom = 190.0
 alignment = 1
 
 [node name="Category" type="Label" parent="CanvasModulate/VBoxContainer/VBoxContainer4"]
 modulate = Color( 0.894118, 0.376471, 0.376471, 1 )
 margin_right = 504.0
-margin_bottom = 18.0
+margin_bottom = 20.0
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 1 )
 text = "Programmer"
@@ -65,18 +65,18 @@ align = 1
 autowrap = true
 
 [node name="List" type="Label" parent="CanvasModulate/VBoxContainer/VBoxContainer4"]
-margin_top = 22.0
+margin_top = 24.0
 margin_right = 504.0
-margin_bottom = 40.0
+margin_bottom = 44.0
 custom_fonts/font = ExtResource( 1 )
 text = "Zero"
 align = 1
 autowrap = true
 
 [node name="Label" type="Label" parent="CanvasModulate/VBoxContainer"]
-margin_top = 198.0
+margin_top = 194.0
 margin_right = 504.0
-margin_bottom = 258.0
+margin_bottom = 260.0
 custom_fonts/font = ExtResource( 1 )
 text = "
 Credits
@@ -85,15 +85,15 @@ align = 1
 uppercase = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasModulate/VBoxContainer"]
-margin_top = 262.0
+margin_top = 264.0
 margin_right = 504.0
-margin_bottom = 302.0
+margin_bottom = 308.0
 alignment = 1
 
 [node name="Category" type="Label" parent="CanvasModulate/VBoxContainer/VBoxContainer"]
 modulate = Color( 0.894118, 0.376471, 0.376471, 1 )
 margin_right = 504.0
-margin_bottom = 18.0
+margin_bottom = 20.0
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 1 )
 text = "Fonts (Resource)"
@@ -101,24 +101,24 @@ align = 1
 autowrap = true
 
 [node name="List" type="Label" parent="CanvasModulate/VBoxContainer/VBoxContainer"]
-margin_top = 22.0
+margin_top = 24.0
 margin_right = 504.0
-margin_bottom = 40.0
+margin_bottom = 44.0
 custom_fonts/font = ExtResource( 1 )
 text = "Kenney"
 align = 1
 autowrap = true
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CanvasModulate/VBoxContainer"]
-margin_top = 306.0
+margin_top = 312.0
 margin_right = 504.0
-margin_bottom = 367.0
+margin_bottom = 379.0
 alignment = 1
 
 [node name="Category" type="Label" parent="CanvasModulate/VBoxContainer/VBoxContainer2"]
 modulate = Color( 0.894118, 0.376471, 0.376471, 1 )
 margin_right = 504.0
-margin_bottom = 18.0
+margin_bottom = 20.0
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 1 )
 text = "Art (Resource)"
@@ -126,9 +126,9 @@ align = 1
 autowrap = true
 
 [node name="List" type="Label" parent="CanvasModulate/VBoxContainer/VBoxContainer2"]
-margin_top = 22.0
+margin_top = 24.0
 margin_right = 504.0
-margin_bottom = 61.0
+margin_bottom = 67.0
 custom_fonts/font = ExtResource( 1 )
 text = "Luis Zuno
 Kenney"

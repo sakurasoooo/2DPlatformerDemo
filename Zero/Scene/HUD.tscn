@@ -1,7 +1,9 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Zero/Sprites/HeartBeat.png" type="Texture" id=1]
 [ext_resource path="res://Zero/Scene/HUD.gd" type="Script" id=2]
+[ext_resource path="res://Zero/Sprites/Icon/Actived/icon1.png" type="Texture" id=3]
+[ext_resource path="res://Licenese/kenney_fontpackage/Fonts/Kenney Future Narrow.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 1 )
@@ -76,9 +78,14 @@ animations = [ {
 "speed": 15.0
 } ]
 
+[sub_resource type="DynamicFont" id=18]
+size = 20
+font_data = ExtResource( 4 )
+
 [node name="HUD" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 script = ExtResource( 2 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -94,5 +101,22 @@ margin_bottom = 67.0
 modulate = Color( 1, 0, 0, 1 )
 position = Vector2( 56, 36 )
 frames = SubResource( 16 )
-frame = 8
+frame = 13
 playing = true
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 750, 73 )
+texture = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+margin_left = 693.0
+margin_top = 25.0
+margin_right = 778.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 18 )
+text = "100/100"
+align = 1
+valign = 1
+
+[connection signal="mouse_entered" from="CanvasLayer/HealthBar" to="." method="_on_HealthBar_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/HealthBar" to="." method="_on_HealthBar_mouse_exited"]

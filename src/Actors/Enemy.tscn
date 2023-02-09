@@ -90,9 +90,12 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 1.5 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 1.4, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "add_award"
+}, {
 "args": [  ],
 "method": "queue_free"
 } ]
@@ -168,7 +171,7 @@ offsets = PoolRealArray( 0.5, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 1 )
 
 [node name="Enemy" type="KinematicBody2D"]
-collision_layer = 2
+collision_layer = 0
 collision_mask = 24
 script = ExtResource( 5 )
 speed = Vector2( 75, 250 )
