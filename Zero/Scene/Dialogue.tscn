@@ -1,0 +1,193 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Licenese/uipack-rpg/PNG/panel_brown.png" type="Texture" id=1]
+[ext_resource path="res://assets/art/player/robot_demo.png" type="Texture" id=2]
+[ext_resource path="res://Dialogue_theme.tres" type="Theme" id=3]
+[ext_resource path="res://Zero/Scene/DialogueChoice.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Zero/Scene/Dialogue.gd" type="Script" id=7]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( -0.00267029, 33.7115, 26.4857, 29.3298 )
+
+[node name="Dialogue" type="CanvasLayer"]
+follow_viewport_enable = true
+script = ExtResource( 7 )
+
+[node name="Dialog" type="NinePatchRect" parent="."]
+anchor_left = 0.032
+anchor_top = 0.525
+anchor_right = 0.984
+anchor_bottom = 0.985
+margin_left = -17.6
+margin_top = -54.0
+margin_right = -0.200012
+margin_bottom = 0.199951
+theme = ExtResource( 3 )
+texture = ExtResource( 1 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="VBoxContainer" type="Control" parent="Dialog"]
+anchor_right = 0.992
+anchor_bottom = 0.696
+margin_left = 11.0
+margin_top = 16.0
+margin_right = 1.0
+margin_bottom = 70.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Dialog/VBoxContainer"]
+margin_right = 754.0
+margin_bottom = 78.0
+text = "Lorem ipsum dolor sit amet. Et consequatur officia aut iure Quis qui quod harum id quasi unde! Et illum natus eos numquam fugit quo quod consectetur aut saepe repellat et quasi nemo et doloremque voluptatem. Aut rerum quod est natus soluta et eveniet atque sit facere esse cum illum labore. 
+
+"
+autowrap = true
+max_lines_visible = 3
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Choices" type="Control" parent="Dialog/VBoxContainer"]
+margin_top = 82.0
+margin_right = 754.0
+margin_bottom = 82.0
+
+[node name="ChoiceA" parent="Dialog/VBoxContainer/Choices" instance=ExtResource( 4 )]
+
+[node name="ChoiceB" parent="Dialog/VBoxContainer/Choices" instance=ExtResource( 4 )]
+margin_top = 64.0
+margin_bottom = 113.0
+
+[node name="ChoiceC" parent="Dialog/VBoxContainer/Choices" instance=ExtResource( 4 )]
+margin_top = 128.0
+margin_bottom = 177.0
+
+[node name="NarratorA" type="NinePatchRect" parent="."]
+anchor_left = 0.012
+anchor_top = 0.275
+anchor_right = 0.336
+anchor_bottom = 0.723
+margin_left = 9.4
+margin_top = -110.0
+margin_right = -102.8
+margin_bottom = -171.04
+theme = ExtResource( 3 )
+texture = ExtResource( 1 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Control" type="Control" parent="NarratorA"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Sprite" type="Sprite" parent="NarratorA/Control"]
+position = Vector2( 80, 81.4483 )
+scale = Vector2( 5.61539, 4.89655 )
+texture = SubResource( 1 )
+
+[node name="Dialog" type="NinePatchRect" parent="NarratorA"]
+anchor_left = 0.02
+anchor_top = 0.741
+anchor_right = 0.906
+anchor_bottom = 0.949
+margin_left = -9.68
+margin_top = 29.685
+margin_right = 37.996
+margin_bottom = 46.965
+texture = ExtResource( 1 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Name" type="Label" parent="NarratorA/Dialog"]
+anchor_right = 0.984
+anchor_bottom = 0.935
+margin_right = 0.0799866
+margin_bottom = 0.029995
+text = "You"
+align = 1
+valign = 1
+
+[node name="NarratorB" type="NinePatchRect" parent="."]
+anchor_left = 0.012
+anchor_top = 0.275
+anchor_right = 0.336
+anchor_bottom = 0.723
+margin_left = 625.4
+margin_top = -125.0
+margin_right = 508.2
+margin_bottom = -180.04
+theme = ExtResource( 3 )
+texture = ExtResource( 1 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Control" type="Control" parent="NarratorB"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Sprite" type="Sprite" parent="NarratorB/Control"]
+modulate = Color( 0.803922, 0, 1, 1 )
+position = Vector2( 70.75, 97.1986 )
+scale = Vector2( 5.40384, 5.91439 )
+texture = SubResource( 1 )
+flip_h = true
+
+[node name="Dialog" type="NinePatchRect" parent="NarratorB"]
+anchor_left = 0.02
+anchor_top = 0.741
+anchor_right = 0.906
+anchor_bottom = 0.949
+margin_left = -9.68
+margin_top = 29.685
+margin_right = 37.996
+margin_bottom = 46.965
+texture = ExtResource( 1 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Name" type="Label" parent="NarratorB/Dialog"]
+anchor_right = 0.984
+anchor_bottom = 0.935
+margin_right = 0.0799866
+margin_bottom = 0.029995
+text = "Mystery"
+align = 1
+valign = 1
+
+[node name="TextTimer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 0.05
+autostart = true
+
+[node name="SkipTimer" type="Timer" parent="."]
+
+[connection signal="pressed" from="Dialog/VBoxContainer/Choices/ChoiceA/Answer" to="." method="_on_choice_a_pressed"]
+[connection signal="pressed" from="Dialog/VBoxContainer/Choices/ChoiceB/Answer" to="." method="_on_choice_b_pressed"]
+[connection signal="pressed" from="Dialog/VBoxContainer/Choices/ChoiceC/Answer" to="." method="_on_choice_c_pressed"]
+
+[editable path="Dialog/VBoxContainer/Choices/ChoiceA"]
+[editable path="Dialog/VBoxContainer/Choices/ChoiceB"]
+[editable path="Dialog/VBoxContainer/Choices/ChoiceC"]

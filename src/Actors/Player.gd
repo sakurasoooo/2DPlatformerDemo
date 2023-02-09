@@ -294,7 +294,7 @@ func _on_Player_got_hurt(damage):
 
 func _fall_damage():
 	var base_damage = clamp(floating_time * 2, 1, 100)
-	apply_damage(base_damage  * base_damage)
+	apply_damage(base_damage  * base_damage  * base_damage  * base_damage)
 	if Global.playerHealth > 0:
 		set_invincible_frame(2)
 		

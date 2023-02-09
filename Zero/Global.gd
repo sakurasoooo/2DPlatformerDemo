@@ -1,7 +1,7 @@
 extends Node
 
 
-var coins_collected : int = 999
+var coins_collected : int = 9
 var playerHealth:float = 100
 var stamina:float = 50;
 
