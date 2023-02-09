@@ -71,10 +71,10 @@ func _physics_process(_delta):
 		return
 
 	if player_detector_left.is_colliding() and _state == State.WALKING:
-		player_detector_left.get_collider().emit_signal("got_hurt")
+		player_detector_left.get_collider().emit_signal("got_hurt", 10)
 
 	if player_detector_right.is_colliding() and _state == State.WALKING:
-		player_detector_right.get_collider().emit_signal("got_hurt")
+		player_detector_right.get_collider().emit_signal("got_hurt", 10)
 
 
 func destroy():

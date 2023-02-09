@@ -1,0 +1,282 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://Licenese/uipack-rpg/PNG/panelInset_beigeLight.png" type="Texture" id=1]
+[ext_resource path="res://Zero/Sprites/Icon/normal/icon2.png" type="Texture" id=2]
+[ext_resource path="res://Zero/Scene/SKillTreeButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Zero/Sprites/Icon/locked/icon2.png" type="Texture" id=4]
+[ext_resource path="res://Zero/Sprites/Icon/Actived/icon2.png" type="Texture" id=5]
+[ext_resource path="res://Zero/Sprites/Icon/Actived/icon4.png" type="Texture" id=6]
+[ext_resource path="res://Zero/Sprites/Icon/normal/icon3.png" type="Texture" id=7]
+[ext_resource path="res://Zero/Sprites/Icon/locked/icon3.png" type="Texture" id=8]
+[ext_resource path="res://Zero/Sprites/Icon/Actived/icon3.png" type="Texture" id=9]
+[ext_resource path="res://Zero/Sprites/Icon/normal/icon4.png" type="Texture" id=10]
+[ext_resource path="res://Zero/Sprites/Icon/locked/icon4.png" type="Texture" id=11]
+[ext_resource path="res://Zero/Sprites/Icon/normal/icon5.png" type="Texture" id=12]
+[ext_resource path="res://Zero/Sprites/Icon/Actived/icon5.png" type="Texture" id=13]
+[ext_resource path="res://Zero/Sprites/Icon/locked/icon5.png" type="Texture" id=14]
+[ext_resource path="res://Zero/Sprites/Icon/Actived/icon6.png" type="Texture" id=15]
+[ext_resource path="res://Zero/Sprites/Icon/normal/icon6.png" type="Texture" id=16]
+[ext_resource path="res://Zero/Sprites/Icon/locked/icon6.png" type="Texture" id=17]
+[ext_resource path="res://Zero/Sprites/Icon/locked/icon7.png" type="Texture" id=18]
+[ext_resource path="res://Zero/Sprites/Icon/normal/icon7.png" type="Texture" id=19]
+[ext_resource path="res://Zero/Sprites/Icon/Actived/icon7.png" type="Texture" id=20]
+[ext_resource path="res://Zero/Sprites/Icon/locked/icon8.png" type="Texture" id=21]
+[ext_resource path="res://Zero/Sprites/Icon/normal/icon8.png" type="Texture" id=22]
+[ext_resource path="res://Zero/Sprites/Icon/Actived/icon8.png" type="Texture" id=23]
+[ext_resource path="res://Zero/Scene/SkillTree.gd" type="Script" id=24]
+[ext_resource path="res://Licenese/kenney_fontpackage/Fonts/Kenney Pixel.ttf" type="DynamicFontData" id=25]
+[ext_resource path="res://src/UserInterface/CoinsCounter.tscn" type="PackedScene" id=26]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = ExtResource( 25 )
+
+[node name="SkillTree" type="Control"]
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_right = 793.0
+margin_bottom = 476.0
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0.858278, 93.1539, 93.7799 )
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Label" type="Label" parent="NinePatchRect"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -84.5
+margin_top = 24.0
+margin_right = 83.5
+margin_bottom = 72.0
+custom_colors/font_color = Color( 0.854902, 0.00784314, 0.741176, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Upgarde"
+align = 1
+uppercase = true
+
+[node name="Heal" parent="NinePatchRect" instance=ExtResource( 3 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.5
+margin_top = 169.0
+margin_right = 12.5
+margin_bottom = 201.0
+
+[node name="VBranch" parent="NinePatchRect/Heal" index="1"]
+visible = false
+
+[node name="HBranch" parent="NinePatchRect/Heal" index="2"]
+visible = false
+
+[node name="HBranch2" parent="NinePatchRect/Heal" index="4"]
+visible = false
+
+[node name="AnimatedSprite" parent="NinePatchRect/Heal/ColorRect/BoxContainer" index="0"]
+frame = 3
+
+[node name="Gun" parent="NinePatchRect" instance=ExtResource( 3 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.5
+margin_top = 105.0
+margin_right = 12.5
+margin_bottom = 137.0
+
+[node name="TextureButton" parent="NinePatchRect/Gun" index="0"]
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 6 )
+texture_disabled = ExtResource( 11 )
+
+[node name="VBranch2" parent="NinePatchRect/Gun" index="3"]
+visible = false
+
+[node name="AnimatedSprite" parent="NinePatchRect/Gun/ColorRect/BoxContainer" index="0"]
+frame = 3
+
+[node name="Double" parent="NinePatchRect" instance=ExtResource( 3 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 43.5
+margin_top = 105.0
+margin_right = 76.5
+margin_bottom = 137.0
+
+[node name="TextureButton" parent="NinePatchRect/Double" index="0"]
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 9 )
+texture_disabled = ExtResource( 8 )
+
+[node name="VBranch" parent="NinePatchRect/Double" index="1"]
+visible = false
+
+[node name="HBranch2" parent="NinePatchRect/Double" index="4"]
+visible = false
+
+[node name="AnimatedSprite" parent="NinePatchRect/Double/ColorRect/BoxContainer" index="0"]
+frame = 3
+
+[node name="DoubleCoin" parent="NinePatchRect" instance=ExtResource( 3 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -84.5
+margin_top = 105.0
+margin_right = -51.5
+margin_bottom = 137.0
+
+[node name="TextureButton" parent="NinePatchRect/DoubleCoin" index="0"]
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 13 )
+texture_disabled = ExtResource( 14 )
+
+[node name="VBranch" parent="NinePatchRect/DoubleCoin" index="1"]
+visible = false
+
+[node name="HBranch" parent="NinePatchRect/DoubleCoin" index="2"]
+visible = false
+
+[node name="AnimatedSprite" parent="NinePatchRect/DoubleCoin/ColorRect/BoxContainer" index="0"]
+frame = 3
+
+[node name="TripleCoin" parent="NinePatchRect" instance=ExtResource( 3 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -84.5
+margin_top = 41.0
+margin_right = -51.5
+margin_bottom = 73.0
+
+[node name="TextureButton" parent="NinePatchRect/TripleCoin" index="0"]
+texture_normal = ExtResource( 16 )
+texture_pressed = ExtResource( 15 )
+texture_disabled = ExtResource( 17 )
+
+[node name="HBranch" parent="NinePatchRect/TripleCoin" index="2"]
+visible = false
+
+[node name="VBranch2" parent="NinePatchRect/TripleCoin" index="3"]
+visible = false
+
+[node name="HBranch2" parent="NinePatchRect/TripleCoin" index="4"]
+visible = false
+
+[node name="AnimatedSprite" parent="NinePatchRect/TripleCoin/ColorRect/BoxContainer" index="0"]
+frame = 3
+
+[node name="Slide" parent="NinePatchRect" instance=ExtResource( 3 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 43.5
+margin_top = 41.0
+margin_right = 76.5
+margin_bottom = 73.0
+
+[node name="TextureButton" parent="NinePatchRect/Slide" index="0"]
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 5 )
+texture_disabled = ExtResource( 4 )
+
+[node name="HBranch" parent="NinePatchRect/Slide" index="2"]
+visible = false
+
+[node name="HBranch2" parent="NinePatchRect/Slide" index="4"]
+visible = false
+
+[node name="AnimatedSprite" parent="NinePatchRect/Slide/ColorRect/BoxContainer" index="0"]
+frame = 3
+
+[node name="StanimaA" parent="NinePatchRect" instance=ExtResource( 3 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 43.5
+margin_top = -23.0
+margin_right = 76.5
+margin_bottom = 9.0
+
+[node name="TextureButton" parent="NinePatchRect/StanimaA" index="0"]
+texture_normal = ExtResource( 19 )
+texture_pressed = ExtResource( 20 )
+texture_disabled = ExtResource( 18 )
+
+[node name="HBranch" parent="NinePatchRect/StanimaA" index="2"]
+visible = false
+
+[node name="HBranch2" parent="NinePatchRect/StanimaA" index="4"]
+visible = false
+
+[node name="AnimatedSprite" parent="NinePatchRect/StanimaA/ColorRect/BoxContainer" index="0"]
+frame = 3
+
+[node name="StanimaB" parent="NinePatchRect" instance=ExtResource( 3 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 43.5
+margin_top = -87.0
+margin_right = 76.5
+margin_bottom = -55.0
+
+[node name="TextureButton" parent="NinePatchRect/StanimaB" index="0"]
+texture_normal = ExtResource( 22 )
+texture_pressed = ExtResource( 23 )
+texture_disabled = ExtResource( 21 )
+
+[node name="HBranch" parent="NinePatchRect/StanimaB" index="2"]
+visible = false
+
+[node name="VBranch2" parent="NinePatchRect/StanimaB" index="3"]
+visible = false
+
+[node name="HBranch2" parent="NinePatchRect/StanimaB" index="4"]
+visible = false
+
+[node name="AnimatedSprite" parent="NinePatchRect/StanimaB/ColorRect/BoxContainer" index="0"]
+frame = 3
+
+[node name="CoinsCounter" parent="NinePatchRect" instance=ExtResource( 26 )]
+
+[node name="BackButton" type="Button" parent="NinePatchRect"]
+margin_left = 587.0
+margin_top = 400.0
+margin_right = 767.0
+margin_bottom = 446.0
+rect_min_size = Vector2( 180, 40 )
+size_flags_horizontal = 4
+text = "Back"
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="pressed" from="NinePatchRect/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
+
+[editable path="NinePatchRect/Heal"]
+[editable path="NinePatchRect/Gun"]
+[editable path="NinePatchRect/Double"]
+[editable path="NinePatchRect/DoubleCoin"]
+[editable path="NinePatchRect/TripleCoin"]
+[editable path="NinePatchRect/Slide"]
+[editable path="NinePatchRect/StanimaA"]
+[editable path="NinePatchRect/StanimaB"]

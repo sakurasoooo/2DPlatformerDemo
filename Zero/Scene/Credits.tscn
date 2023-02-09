@@ -1,0 +1,150 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Zero/Fonts/Kenny_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Zero/Scene/Credits.gd" type="Script" id=2]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasModulate"]
+margin_right = 801.0
+margin_bottom = 477.0
+color = Color( 0.25098, 0.25098, 0.25098, 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasModulate"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 148.0
+margin_right = 652.178
+margin_bottom = 477.464
+alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="CanvasModulate/VBoxContainer"]
+margin_top = 110.0
+margin_right = 504.0
+margin_bottom = 150.0
+alignment = 1
+
+[node name="Category" type="Label" parent="CanvasModulate/VBoxContainer/VBoxContainer3"]
+modulate = Color( 0.894118, 0.376471, 0.376471, 1 )
+margin_right = 504.0
+margin_bottom = 18.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Game Design"
+align = 1
+autowrap = true
+
+[node name="List" type="Label" parent="CanvasModulate/VBoxContainer/VBoxContainer3"]
+margin_top = 22.0
+margin_right = 504.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 1 )
+text = "Zero"
+align = 1
+autowrap = true
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="CanvasModulate/VBoxContainer"]
+margin_top = 154.0
+margin_right = 504.0
+margin_bottom = 194.0
+alignment = 1
+
+[node name="Category" type="Label" parent="CanvasModulate/VBoxContainer/VBoxContainer4"]
+modulate = Color( 0.894118, 0.376471, 0.376471, 1 )
+margin_right = 504.0
+margin_bottom = 18.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Programmer"
+align = 1
+autowrap = true
+
+[node name="List" type="Label" parent="CanvasModulate/VBoxContainer/VBoxContainer4"]
+margin_top = 22.0
+margin_right = 504.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 1 )
+text = "Zero"
+align = 1
+autowrap = true
+
+[node name="Label" type="Label" parent="CanvasModulate/VBoxContainer"]
+margin_top = 198.0
+margin_right = 504.0
+margin_bottom = 258.0
+custom_fonts/font = ExtResource( 1 )
+text = "
+Credits
+"
+align = 1
+uppercase = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasModulate/VBoxContainer"]
+margin_top = 262.0
+margin_right = 504.0
+margin_bottom = 302.0
+alignment = 1
+
+[node name="Category" type="Label" parent="CanvasModulate/VBoxContainer/VBoxContainer"]
+modulate = Color( 0.894118, 0.376471, 0.376471, 1 )
+margin_right = 504.0
+margin_bottom = 18.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Fonts (Resource)"
+align = 1
+autowrap = true
+
+[node name="List" type="Label" parent="CanvasModulate/VBoxContainer/VBoxContainer"]
+margin_top = 22.0
+margin_right = 504.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 1 )
+text = "Kenney"
+align = 1
+autowrap = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasModulate/VBoxContainer"]
+margin_top = 306.0
+margin_right = 504.0
+margin_bottom = 367.0
+alignment = 1
+
+[node name="Category" type="Label" parent="CanvasModulate/VBoxContainer/VBoxContainer2"]
+modulate = Color( 0.894118, 0.376471, 0.376471, 1 )
+margin_right = 504.0
+margin_bottom = 18.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Art (Resource)"
+align = 1
+autowrap = true
+
+[node name="List" type="Label" parent="CanvasModulate/VBoxContainer/VBoxContainer2"]
+margin_top = 22.0
+margin_right = 504.0
+margin_bottom = 61.0
+custom_fonts/font = ExtResource( 1 )
+text = "Luis Zuno
+Kenney"
+align = 1
+autowrap = true
+
+[node name="BackButton" type="Button" parent="."]
+margin_left = 587.0
+margin_top = 400.0
+margin_right = 767.0
+margin_bottom = 446.0
+rect_min_size = Vector2( 180, 40 )
+size_flags_horizontal = 4
+text = "Back"
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]

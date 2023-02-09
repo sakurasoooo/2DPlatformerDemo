@@ -12,9 +12,11 @@ onready var resume_button = center_cont.get_node(@"VBoxContainer/ResumeButton")
 onready var root = get_tree().get_root()
 onready var scene_root = root.get_child(root.get_child_count() - 1)
 onready var tween = $Tween
-
+onready var credit_page = $Credits
+onready var skillTree = $SkillTree
 
 func _ready():
+	credit_page.hide()
 	hide()
 
 
@@ -29,6 +31,9 @@ func close():
 			_end_position, _start_position, fade_out_duration,
 			Tween.TRANS_CUBIC, Tween.EASE_OUT)
 	tween.start()
+
+	credit_page.hide()
+	skillTree.hide()
 
 
 func open():
@@ -56,3 +61,11 @@ func _on_QuitButton_pressed():
 func _on_Tween_all_completed():
 	if modulate.a < 0.5:
 		hide()
+
+
+func _on_CreditsButton_pressed():
+	credit_page._open()
+
+
+func _on_UpgradeButton_pressed():
+	skillTree._open()

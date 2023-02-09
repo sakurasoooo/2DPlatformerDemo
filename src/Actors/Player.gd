@@ -1,15 +1,16 @@
 class_name Player
 extends Actor
 
-
 # warning-ignore:unused_signal
-signal collect_coin()
+signal collect_coin
 #Zero
-signal player_shoot()
+signal player_shoot
 # warning-ignore:unused_signal
-signal got_hurt()
+signal got_hurt
+# warning-ignore:unused_signal
+signal jump_attack
 
-signal jump_attack()
+signal death
 
 const FLOOR_DETECT_DISTANCE = 20.0
 
@@ -21,16 +22,30 @@ onready var shoot_timer = $ShootAnimation
 onready var sprite = $Sprite
 onready var sound_jump = $Jump
 onready var gun = sprite.get_node(@"Gun")
+onready var slider = $Fly
+onready var sliderTimer = $SliderCooldown
 
-onready var sprites = $Sprite #Zero
+onready var vfx_path = preload("res://Zero/Scene/Explosion.tscn")
+onready var text_path = preload("res://Zero/Scene/Damage_Number.tscn")
 
-onready var doubleJump = true #Zero
+onready var sprites = $Sprite  #Zero
 
-onready var bufferTime = false #Zero
+onready var doubleJump = true  #Zero
 
-onready var bufferTimeTrigger = false #Zero
+onready var bufferTime = false  #Zero let player out of control and push back
 
-onready var jumpAttack = false #Zero
+onready var bufferTimeTrigger = false  #Zero
+
+onready var jumpAttack = false  #Zero
+
+onready var is_shooting = false
+
+onready var is_sliding = false
+
+onready var floating_time = 0;
+
+onready var jumpY = global_position.y; # world postion 
+
 
 func _ready():
 	# Static types are necessary here to avoid warnings.
@@ -47,6 +62,20 @@ func _ready():
 		camera.make_current()
 
 
+#Zero
+func _process(_delta):
+	if is_sliding:
+		reduce_stamina(_delta * 5)
+		reset_fall()
+		slider.show()
+	else:
+		slider.hide()
+
+	if !is_sliding:
+		recovery_stamina(clamp((Global.stamina / Global.max_stamina +0.1) * 10,1,10) * _delta)
+	
+
+
 # Physics process is a built-in loop in Godot.
 # If you define _physics_process on a node, Godot will call it every frame.
 
@@ -59,6 +88,7 @@ func _ready():
 # 5. Shoots bullets.
 # 6. Updates the animation.
 
+
 # Splitting the physics process logic into functions not only makes it
 # easier to read, it help to change or improve the code later on:
 # - If you need to change a calculation, you can use Go To -> Function
@@ -66,15 +96,51 @@ func _ready():
 # - If you split the character into a state machine or more advanced pattern,
 #   you can easily move individual functions.
 func _physics_process(_delta):
-	# Play jump sound #Zero
-	if (Input.is_action_just_pressed("jump" + action_suffix) and is_on_floor() and !bufferTime) or ( (doubleJump and !bufferTime) and Input.is_action_just_pressed("jump" + action_suffix)):
-		sound_jump.play()
+	
+	if Global.playerHealth <= 0:
+		death()
+
+	#fall
+	if(!is_on_floor()):
+		floating_time += _delta
+		jumpY = min(jumpY, global_position.y)
+
+	if Global.stamina <= 0:
+		_stop_sliding()
+	# slide process
+	if (
+		Input.is_action_just_released("slide")
+		and !is_on_floor()
+		and !bufferTime
+		and Global.stamina > 25
+		and sliderTimer.is_stopped()
+	):
+		is_sliding = true
+		_velocity.y = 0
+
+	if is_sliding and Input.is_action_just_pressed("slide"):
+		_stop_sliding()
+
+	if is_sliding:
+		vitual_gravity = gravity * 0.05
+	else:
+		vitual_gravity = gravity
+
+	#audio
+	# if (
+	# 	(Input.is_action_just_pressed("jump" ) and is_on_floor() and !bufferTime)
+	# 	or ((doubleJump and !bufferTime) and Input.is_action_just_pressed("jump" ))
+	# ):
+	# 	sound_jump.play()
 
 	var direction = get_direction()
-
-	var is_jump_interrupted = Input.is_action_just_released("jump" + action_suffix) and _velocity.y < 0.0 #is jumping
-	_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
-
+	if !is_sliding:
+		# Jump process
+		var is_jump_interrupted = Input.is_action_just_released("jump") and _velocity.y < 0.0  #is jumping
+		_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
+	else:
+		_velocity = calculate_move_velocity(_velocity, direction, speed, false)
+	
 	var snap_vector = Vector2.ZERO
 	if direction.y == 0.0 and !bufferTime:
 		snap_vector = Vector2.DOWN * FLOOR_DETECT_DISTANCE
@@ -88,74 +154,90 @@ func _physics_process(_delta):
 	if direction.x != 0 and !bufferTime:
 		if direction.x > 0:
 			sprite.scale.x = 1
+			slider.scale.x = 1
 		else:
 			sprite.scale.x = -1
+			slider.scale.x = -1
 
+		#Zero Reset DoubleJump
+	if is_on_floor():
+		doubleJump = true
+		_stop_sliding()
+		if global_position.y - jumpY >  32 * 4.1:
+			_fall_damage()
+		reset_fall()
+
+	_update_shoot()
+	# apply hurt vfx
+	_update_vfx(_delta)
+
+	_update_Animation()
+
+
+func _update_shoot():
 	# We use the sprite's scale to store Robi’s look direction which allows us to shoot
 	# bullets forward.
 	# There are many situations like these where you can reuse existing properties instead of
 	# creating new variables.
-	var is_shooting = false
-	if Input.is_action_just_pressed("shoot" + action_suffix) && Global.coins_collected > 0: #Zero
-		is_shooting = gun.shoot(sprite.scale.x) 
+
+	if (
+		Input.is_action_just_pressed("shoot")
+		and shoot_timer.is_stopped()
+		and Global.coins_collected > 0
+	):  #Zero
+		is_shooting = gun.shoot(sprite.scale.x)
 
 		#Zero
-	if is_shooting:
-		Global.coins_collected -= 1
-		emit_signal("player_shoot")
-
-	var animation = get_new_animation(is_shooting)
-	if animation != animation_player.current_animation and shoot_timer.is_stopped():
 		if is_shooting:
+			Global.coins_collected -= 1
+			emit_signal("player_shoot")
 			shoot_timer.start()
-		animation_player.play(animation)
 
-			#Zero Reset DoubleJump
-	if is_on_floor():
-		doubleJump = true
+
+func _update_Animation():
+	var animation = get_new_animation(is_shooting)
+	if animation != animation_player.current_animation:
+		animation_player.play(animation)  #Animation update
 
 
 func get_direction():
-	if !bufferTime :
+	if !bufferTime:
 		if !jumpAttack:
 			var y = 0
 
-			if is_on_floor() and Input.is_action_just_pressed("jump" + action_suffix):
-				y =  -1
-			elif doubleJump and Input.is_action_just_pressed("jump" + action_suffix):
+			if is_on_floor() and Input.is_action_just_pressed("jump"):
+				# jumpY = global_position.y
+				sound_jump.play()
+				y = -1
+			elif doubleJump and Input.is_action_just_pressed("jump"):
+				sound_jump.play()
 				doubleJump = false
-				y =  -0.9
-			else :
+				y = -0.9
+			else:
 				y = 0
 
 			return Vector2(
-				Input.get_action_strength("move_right" + action_suffix) - Input.get_action_strength("move_left" + action_suffix),
-
-				y # Zero Double Jump
-
-			)
+				Input.get_action_strength("move_right") - Input.get_action_strength("move_left"), y
+			)  # Zero Double Jump
 		else:
 			jumpAttack = false
 			sound_jump.play()
-			return Vector2(sprite.scale.x ,-1)
+			return Vector2(sprite.scale.x, -1)
 	else:
-		if bufferTimeTrigger : # jump once
+		if bufferTimeTrigger:  # jump once
 			bufferTimeTrigger = false
-			return Vector2(-sprite.scale.x ,-0.7)
+			return Vector2(-sprite.scale.x, -0.7)
 		else:
-			return Vector2(-sprite.scale.x ,0)
+			return Vector2(-sprite.scale.x, 0)
 
 
 # This function calculates a new velocity whenever you need it.
 # It allows you to interrupt jumps.
-func calculate_move_velocity(
-		linear_velocity,
-		direction,
-		speed,
-		is_jump_interrupted
-	):
+func calculate_move_velocity(linear_velocity, direction, speed, is_jump_interrupted):
 	var velocity = linear_velocity
 	velocity.x = speed.x * direction.x
+	if is_sliding:
+		velocity.x = speed.x * sprite.scale.x * 0.8
 	if bufferTime:
 		velocity.x *= 0.45
 	if direction.y != 0.0:
@@ -167,7 +249,7 @@ func calculate_move_velocity(
 	return velocity
 
 
-func get_new_animation(is_shooting = false):
+func get_new_animation(_is_shooting = false):
 	var animation_new = ""
 	if is_on_floor():
 		if abs(_velocity.x) > 0.1:
@@ -179,32 +261,105 @@ func get_new_animation(is_shooting = false):
 			animation_new = "falling"
 		else:
 			animation_new = "jumping"
-	if is_shooting:
+	if _is_shooting:
 		animation_new += "_weapon"
 	return animation_new
 
-#Zero
-func _process(delta):
+
+func _update_vfx(delta):
 	if sprites.modulate.r < 1:
 		sprites.modulate.r += 0.9 * delta
 	if sprites.modulate.g < 1:
 		sprites.modulate.g += 0.9 * delta
 	if sprites.modulate.b < 1:
 		sprites.modulate.b += 0.9 * delta
+
+
 #Zero
-func _on_Player_got_hurt():
-	if !bufferTime :
-		bufferTime = true
-		bufferTimeTrigger = true
-		sprites.modulate = Color(1,0.2,0.2)
-		set_collision_mask_bit(1,false)
-		yield(get_tree().create_timer(1.0), "timeout")
-		bufferTime = false
-		set_collision_mask_bit(1,true)
+func _on_Player_got_hurt(damage):
+	if !bufferTime:
+		apply_damage(damage)
+		if Global.playerHealth > 0:
+			bufferTime = true
+			bufferTimeTrigger = true
+
+			set_invincible_frame(2)
+			yield(get_tree().create_timer(1.0), "timeout")
+			bufferTime = false
+
+func _fall_damage():
+	var base_damage = clamp(floating_time * 2, 1, 100)
+	apply_damage(base_damage  * base_damage)
+	if Global.playerHealth > 0:
+		set_invincible_frame(2)
+		
+
+
+func set_invincible_frame(time):
+	set_collision_mask_bit(1, false)  # disable collider
+	yield(get_tree().create_timer(time), "timeout")
+	set_collision_mask_bit(1, true)  # enable collider
 
 
 func _on_Player_jump_attack():
+	reset_fall()
 	jumpAttack = true
+	_stop_sliding()
+
 
 func get_vel():
 	return _velocity
+
+
+func apply_damage(damage):
+	sprites.modulate = Color(1, 0.2, 0.2)
+	Global.playerHealth = max(0, Global.playerHealth - damage)
+
+	var damage_text = text_path.instance()
+	
+	add_child(damage_text)
+	damage_text.global_position = global_position
+	damage_text.set_number(damage)
+	
+
+
+func recovery_health(value):
+	Global.playerHealth = min(Global.max_playerHealth, Global.playerHealth + value)
+
+
+func recovery_all_health():
+	recovery_health(100)
+
+
+func recovery_stamina(value):
+	Global.stamina = min(Global.max_stamina, Global.stamina + value)
+
+
+func reduce_stamina(value):
+	Global.stamina = max(0, Global.stamina - value)
+
+
+func death():
+	#reposition camera
+	var camera = $Camera
+	self.remove_child(camera)
+	$"..".add_child(camera)
+	camera.global_position = self.global_position
+
+	var vfx = vfx_path.instance()
+	$"..".add_child(vfx)
+	vfx.global_position = self.global_position
+	queue_free()
+
+
+func _on_ShootAnimation_timeout():
+	is_shooting = false
+
+
+func _stop_sliding():
+	is_sliding = false
+	sliderTimer.start()
+
+func reset_fall():
+	jumpY = global_position.y
+	floating_time = 0

@@ -1,0 +1,99 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Zero/Sprites/Icon/Actived/icon1.png" type="Texture" id=1]
+[ext_resource path="res://Zero/Sprites/Icon/locked/icon1.png" type="Texture" id=2]
+[ext_resource path="res://Zero/Sprites/Icon/normal/icon1.png" type="Texture" id=3]
+[ext_resource path="res://Zero/Sprites/vhline2.png" type="Texture" id=4]
+[ext_resource path="res://Zero/Sprites/vhline1.png" type="Texture" id=5]
+[ext_resource path="res://Zero/Scene/SKillTreeButton.gd" type="Script" id=6]
+[ext_resource path="res://assets/art/coin/coin.png" type="Texture" id=7]
+[ext_resource path="res://Zero/Fonts/Kenny_font.tres" type="DynamicFont" id=8]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 7 )
+region = Rect2( 8, 0, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 7 )
+region = Rect2( 16, 0, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 7 )
+region = Rect2( 24, 0, 8, 8 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Group" type="Control"]
+margin_right = 33.0
+margin_bottom = 32.0
+rect_pivot_offset = Vector2( 93, 94 )
+script = ExtResource( 6 )
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_right = 32.0
+margin_bottom = 32.0
+disabled = true
+toggle_mode = true
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 1 )
+texture_disabled = ExtResource( 2 )
+
+[node name="VBranch" type="Sprite" parent="."]
+position = Vector2( 16, 48 )
+texture = ExtResource( 5 )
+
+[node name="HBranch" type="Sprite" parent="."]
+position = Vector2( -16, 16 )
+texture = ExtResource( 4 )
+
+[node name="VBranch2" type="Sprite" parent="."]
+position = Vector2( 16, -16 )
+texture = ExtResource( 5 )
+
+[node name="HBranch2" type="Sprite" parent="."]
+position = Vector2( 48, 17 )
+texture = ExtResource( 4 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -5.0
+margin_top = 33.0
+margin_right = 38.0
+margin_bottom = 53.0
+
+[node name="BoxContainer" type="VBoxContainer" parent="ColorRect"]
+margin_left = -1.0
+margin_right = 42.0
+margin_bottom = 18.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="ColorRect/BoxContainer"]
+position = Vector2( 8, 11.5 )
+scale = Vector2( 1.5, 1.875 )
+frames = SubResource( 5 )
+frame = 1
+playing = true
+
+[node name="Label" type="Label" parent="ColorRect/BoxContainer"]
+margin_right = 43.0
+margin_bottom = 20.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 8 )
+text = "100"
+align = 2
+valign = 1
+
+[connection signal="focus_entered" from="TextureButton" to="." method="_on_TextureButton_focus_entered"]
+[connection signal="focus_exited" from="TextureButton" to="." method="_on_TextureButton_focus_exited"]
+[connection signal="mouse_entered" from="TextureButton" to="." method="_on_TextureButton_mouse_entered"]
+[connection signal="mouse_exited" from="TextureButton" to="." method="_on_TextureButton_mouse_exited"]

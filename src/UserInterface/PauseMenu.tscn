@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/theme/user_interface.tres" type="Theme" id=1]
 [ext_resource path="res://src/UserInterface/PauseMenu.gd" type="Script" id=2]
 [ext_resource path="res://assets/theme/fonts/kenney_mini_square.tres" type="DynamicFontData" id=3]
 [ext_resource path="res://src/UserInterface/CoinsCounter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Zero/Scene/Credits.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Zero/Scene/SkillTree.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 44
@@ -33,9 +35,9 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer"]
 margin_left = 250.0
-margin_top = 140.0
+margin_top = 95.0
 margin_right = 550.0
-margin_bottom = 340.0
+margin_bottom = 384.0
 rect_min_size = Vector2( 300, 200 )
 custom_constants/separation = 6
 alignment = 1
@@ -44,34 +46,56 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="ColorRect/CenterContainer/VBoxContainer"]
-margin_top = 7.0
 margin_right = 300.0
-margin_bottom = 62.0
+margin_bottom = 55.0
 custom_fonts/font = SubResource( 1 )
 text = "Game Paused"
 align = 1
 valign = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="ColorRect/CenterContainer/VBoxContainer"]
-margin_top = 68.0
+margin_top = 61.0
 margin_right = 300.0
-margin_bottom = 88.0
+margin_bottom = 81.0
 rect_min_size = Vector2( 0, 20 )
+
+[node name="UpgradeButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
+margin_left = 60.0
+margin_top = 87.0
+margin_right = 240.0
+margin_bottom = 133.0
+rect_min_size = Vector2( 180, 40 )
+size_flags_horizontal = 4
+custom_colors/font_color_disabled = Color( 0.160784, 0.0392157, 0.164706, 1 )
+custom_colors/font_color_focus = Color( 0.803922, 0.356863, 0.87451, 1 )
+custom_colors/font_color = Color( 0.65098, 0.0745098, 0.890196, 1 )
+custom_colors/font_color_hover = Color( 0.803922, 0.356863, 0.87451, 1 )
+custom_colors/font_color_pressed = Color( 0.8, 0.592157, 0.886275, 1 )
+text = "Upgrade"
 
 [node name="ResumeButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
 margin_left = 60.0
-margin_top = 94.0
+margin_top = 139.0
 margin_right = 240.0
-margin_bottom = 140.0
+margin_bottom = 185.0
 rect_min_size = Vector2( 180, 40 )
 size_flags_horizontal = 4
 text = "Resume"
 
+[node name="CreditsButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
+margin_left = 60.0
+margin_top = 191.0
+margin_right = 240.0
+margin_bottom = 237.0
+rect_min_size = Vector2( 180, 40 )
+size_flags_horizontal = 4
+text = "Credits"
+
 [node name="QuitButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
 margin_left = 60.0
-margin_top = 146.0
+margin_top = 243.0
 margin_right = 240.0
-margin_bottom = 192.0
+margin_bottom = 289.0
 rect_min_size = Vector2( 180, 40 )
 size_flags_horizontal = 4
 text = "Quit"
@@ -80,8 +104,16 @@ text = "Quit"
 margin_right = 105.0
 margin_bottom = 50.0
 
+[node name="Credits" parent="." instance=ExtResource( 5 )]
+visible = false
+
+[node name="SkillTree" parent="." instance=ExtResource( 6 )]
+visible = false
+
 [node name="Tween" type="Tween" parent="."]
 
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/UpgradeButton" to="." method="_on_UpgradeButton_pressed"]
 [connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/CreditsButton" to="." method="_on_CreditsButton_pressed"]
 [connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_all_completed"]
