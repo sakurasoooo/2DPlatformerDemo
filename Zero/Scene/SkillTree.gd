@@ -103,6 +103,8 @@ func _on_healSkillButton_pressed():
 		Global.emit_signal("healSkill")
 		Global.healSkill = true
 		Global.unlockLevel = int(max(Global.unlockLevel,1))
+	else:
+		healSkill._deselect()
 
 
 func _on_sliderSkillButton_pressed():
@@ -112,6 +114,8 @@ func _on_sliderSkillButton_pressed():
 		Global.emit_signal("sliderSkill")
 		Global.sliderSkill = true
 		Global.unlockLevel = int(max(Global.unlockLevel,4))
+	else:
+		sliderSkill._deselect()
 
 
 func _on_jumpSkillButton_pressed():
@@ -121,6 +125,8 @@ func _on_jumpSkillButton_pressed():
 		Global.emit_signal("jumpSkill")
 		Global.doubleJumpSkill = true
 		Global.unlockLevel = int(max(Global.unlockLevel,3))
+	else:
+		jumpSkill._deselect()
 
 
 func _on_gunSkillButton_pressed():
@@ -130,6 +136,8 @@ func _on_gunSkillButton_pressed():
 		Global.emit_signal("gunSkill")
 		Global.gunSkill = true
 		Global.unlockLevel = int(max(Global.unlockLevel,2))
+	else:
+		gunSkill._deselect()
 
 
 func _on_doubleCoinButton_pressed():
@@ -139,6 +147,8 @@ func _on_doubleCoinButton_pressed():
 		Global.emit_signal("doubleCoin")
 		Global.moreCoinSkill = true
 		Global.unlockLevel = int(max(Global.unlockLevel,3))
+	else:
+		doubleCoin._deselect()
 
 
 func _on_trippleCoinButton_pressed():
@@ -148,6 +158,8 @@ func _on_trippleCoinButton_pressed():
 		Global.emit_signal("trippleCoin")
 		Global.moremoreCoinSkill = true
 		Global.unlockLevel = int(max(Global.unlockLevel,4))
+	else:
+		trippleCoin._deselect()
 
 
 func _on_moreStanimaButton_pressed():
@@ -157,6 +169,8 @@ func _on_moreStanimaButton_pressed():
 		Global.emit_signal("moreStanima")
 		Global.moreStanimaSkill= true
 		Global.unlockLevel = int(max(Global.unlockLevel,5))
+	else:
+		moreStanima._deselect()
 
 func _on_moremoreStanimaButton_pressed():
 	if moremoreStanimaPrice <= Global.coins_collected:
@@ -165,3 +179,5 @@ func _on_moremoreStanimaButton_pressed():
 		Global.emit_signal("moremoreStanima")
 		Global.moremoreStanimaSkill= true
 		Global.unlockLevel = int(max(Global.unlockLevel,6))
+	else:
+		moremoreStanima._deselect()

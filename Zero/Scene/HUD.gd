@@ -17,11 +17,11 @@ func _process(_delta):
 	if(Global.healSkill):
 		health_recovery_icon.show()
 
-	health_text.text = str(int(Global.playerHealth)) + "/100"
+	health_text.text = str(int(Global.playerHealth)) + "/" +  str(int(Global.max_playerHealth)) 
 
 
 func UpdateHealth():
-	healthMonitor.modulate.h = (((Global.playerHealth) / 100.0 * 108.0) / 360.0)
+	healthMonitor.modulate.h = (((Global.playerHealth) / Global.max_playerHealth * 108.0) / 360.0)
 
 
 

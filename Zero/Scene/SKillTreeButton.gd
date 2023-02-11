@@ -32,6 +32,9 @@ func _lock():
 	button.set_toggle_mode(true)
 	button.pressed = false
 
+func _deselect():
+	button.pressed =  false
+
 func _set_price(value):
 	price_text.text = str(value)
 

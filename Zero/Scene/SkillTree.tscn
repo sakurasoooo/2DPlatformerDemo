@@ -83,6 +83,9 @@ visible = false
 [node name="HBranch2" parent="NinePatchRect/Heal" index="4"]
 visible = false
 
+[node name="AnimatedSprite" parent="NinePatchRect/Heal/ColorRect/BoxContainer" index="0"]
+frame = 2
+
 [node name="Double" parent="NinePatchRect" instance=ExtResource( 3 )]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -104,6 +107,9 @@ visible = false
 [node name="HBranch2" parent="NinePatchRect/Double" index="4"]
 visible = false
 
+[node name="AnimatedSprite" parent="NinePatchRect/Double/ColorRect/BoxContainer" index="0"]
+frame = 2
+
 [node name="Gun" parent="NinePatchRect" instance=ExtResource( 3 )]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -124,6 +130,9 @@ position = Vector2( -16, 17 )
 
 [node name="VBranch2" parent="NinePatchRect/Gun" index="3"]
 visible = false
+
+[node name="AnimatedSprite" parent="NinePatchRect/Gun/ColorRect/BoxContainer" index="0"]
+frame = 2
 
 [node name="DoubleCoin" parent="NinePatchRect" instance=ExtResource( 3 )]
 anchor_left = 0.5
@@ -148,6 +157,9 @@ visible = false
 
 [node name="HBranch2" parent="NinePatchRect/DoubleCoin" index="4"]
 visible = false
+
+[node name="AnimatedSprite" parent="NinePatchRect/DoubleCoin/ColorRect/BoxContainer" index="0"]
+frame = 2
 
 [node name="TripleCoin" parent="NinePatchRect" instance=ExtResource( 3 )]
 anchor_left = 0.5
@@ -176,6 +188,9 @@ visible = false
 [node name="HBranch2" parent="NinePatchRect/TripleCoin" index="4"]
 visible = false
 
+[node name="AnimatedSprite" parent="NinePatchRect/TripleCoin/ColorRect/BoxContainer" index="0"]
+frame = 2
+
 [node name="Slide" parent="NinePatchRect" instance=ExtResource( 3 )]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -200,6 +215,9 @@ visible = false
 [node name="HBranch2" parent="NinePatchRect/Slide" index="4"]
 visible = false
 
+[node name="AnimatedSprite" parent="NinePatchRect/Slide/ColorRect/BoxContainer" index="0"]
+frame = 2
+
 [node name="StanimaA" parent="NinePatchRect" instance=ExtResource( 3 )]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -223,6 +241,9 @@ visible = false
 
 [node name="HBranch2" parent="NinePatchRect/StanimaA" index="4"]
 visible = false
+
+[node name="AnimatedSprite" parent="NinePatchRect/StanimaA/ColorRect/BoxContainer" index="0"]
+frame = 2
 
 [node name="StanimaB" parent="NinePatchRect" instance=ExtResource( 3 )]
 anchor_left = 0.5
@@ -250,6 +271,9 @@ visible = false
 
 [node name="HBranch2" parent="NinePatchRect/StanimaB" index="4"]
 visible = false
+
+[node name="AnimatedSprite" parent="NinePatchRect/StanimaB/ColorRect/BoxContainer" index="0"]
+frame = 2
 
 [node name="CoinsCounter" parent="NinePatchRect" instance=ExtResource( 26 )]
 

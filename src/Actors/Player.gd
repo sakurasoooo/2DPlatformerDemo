@@ -210,11 +210,11 @@ func get_direction():
 		if !jumpAttack:
 			var y = 0
 
-			if is_on_floor() and Input.is_action_just_pressed("jump"):
+			if is_on_floor() and Input.is_action_just_pressed("jump") and !is_sliding:
 				# jumpY = global_position.y
 				sound_jump.play()
 				y = -1
-			elif doubleJump and Input.is_action_just_pressed("jump"):
+			elif doubleJump and Input.is_action_just_pressed("jump") and !is_sliding:
 				sound_jump.play()
 				doubleJump = false
 				y = -0.9

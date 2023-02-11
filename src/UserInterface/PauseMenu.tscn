@@ -87,14 +87,14 @@ margin_right = 290.0
 margin_bottom = 80.0
 
 [node name="Sprite" type="Sprite" parent="ColorRect/Control/VBoxContainer/HBoxContainer2"]
-position = Vector2( 109, 22 )
+position = Vector2( 121, 22 )
 scale = Vector2( 1.34375, 1.91667 )
 texture = SubResource( 3 )
 
 [node name="Label" type="Label" parent="ColorRect/Control/VBoxContainer/HBoxContainer2"]
-margin_right = 80.0
+margin_right = 99.0
 margin_bottom = 38.0
-text = "Slide"
+text = "Glider"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="ColorRect/Control/VBoxContainer"]
 margin_top = 84.0
@@ -134,9 +134,6 @@ text = "Reborn"
 [node name="CenterContainer" type="CenterContainer" parent="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer"]
 margin_left = 250.0
